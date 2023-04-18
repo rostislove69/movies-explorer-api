@@ -10,9 +10,9 @@ const errorHandler = require('./middlewares/errorHandler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { validationCreateUser, validationLogin } = require('./middlewares/validator');
 
-const { PORT = 3000 } = process.env;
+const { PORT = 3000, NODE_ENV, MONGO_URL } = process.env;
 
-mongoose.connect('mongodb://0.0.0.0:27017/bitfilmsdb');
+mongoose.connect(NODE_ENV === 'production' ? MONGO_URL : 'mongodb://0.0.0.0:27017/devdb');
 
 const app = express();
 
