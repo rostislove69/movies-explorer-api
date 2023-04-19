@@ -2,17 +2,17 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const helmet = require('helmet');
 const { errors } = require('celebrate');
-const { createUser, login } = require('./controllers/users');
 const routes = require('./routes');
-const auth = require('./middlewares/auth');
 const errorHandler = require('./middlewares/errorHandler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-const { validationCreateUser, validationLogin } = require('./middlewares/validator');
+const { mongoUrlDev } = require('./utils/constants');
+const limiter = require('./middlewares/limiter');
 
 const { PORT = 3000, NODE_ENV, MONGO_URL } = process.env;
 
-mongoose.connect(NODE_ENV === 'production' ? MONGO_URL : 'mongodb://0.0.0.0:27017/devdb');
+mongoose.connect(NODE_ENV === 'production' ? MONGO_URL : mongoUrlDev);
 
 const app = express();
 
@@ -23,10 +23,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(requestLogger);
 
-app.post('/signup', validationCreateUser, createUser);
-app.post('/signin', validationLogin, login);
-
-app.use(auth);
+app.use(helmet());
+app.use(limiter);
 
 app.use(routes);
 

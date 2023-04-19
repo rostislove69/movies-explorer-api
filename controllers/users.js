@@ -24,6 +24,8 @@ const updateUserInfo = (req, res, next) => {
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new BadRequestError(messages.badRequest));
+      } else if (err.codeName === 'DuplicateKey') {
+        next(new BadRequestError(messages.dublicateEmail));
       } else {
         next(err);
       }

@@ -4,7 +4,8 @@ const BadRequestError = require('../errors/BadRequestError');
 const NoRightsError = require('../errors/NoRightsError');
 const NotFoundError = require('../errors/NotFoundError');
 
-const getMovies = (req, res, next) => Movie.find({})
+const getMovies = (req, res, next) => Movie.find({ owner: req.user._id })
+  .populate(['owner'])
   .then((movies) => res.status(statusCodes.ok).send(movies))
   .catch(next);
 

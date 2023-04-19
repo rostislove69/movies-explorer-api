@@ -18,5 +18,5 @@ module.exports = (req, res, next) => {
     return next(new NotAuthError(messages.needAuth));
   }
   req.user = payload;
-  next();
+  return next();
 };
