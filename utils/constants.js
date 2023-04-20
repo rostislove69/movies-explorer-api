@@ -15,10 +15,9 @@ const messages = {
   userAlredyCreated: 'Пользователь с таким email уже зарегистрирован',
   needAuth: 'Необходима авторизация',
   loginFailed: 'Неправильные почта или пароль',
-  dublicateEmail: 'Пользователь с такой почтой уже существует',
 };
 
-const mongoUrlDev = 'mongodb://0.0.0.0:27017/devdb';
+const mongoUrlDev = 'mongodb://0.0.0.0:27017/bitfilmsdb';
 
 module.exports = {
   statusCodes,

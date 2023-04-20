@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const { NODE_ENV, JWT_SECRET } = process.env;
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -25,7 +27,7 @@ const updateUserInfo = (req, res, next) => {
       if (err.name === 'ValidationError') {
         next(new BadRequestError(messages.badRequest));
       } else if (err.codeName === 'DuplicateKey') {
-        next(new BadRequestError(messages.dublicateEmail));
+        next(new ConflictError(messages.userAlredyCreated));
       } else {
         next(err);
       }
