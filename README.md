@@ -1,5 +1,30 @@
-# movies-explorer-api
+# Movies Explorer
 
-IP-адрес 158.160.103.40
+## Репозиторий бэкенда для приложения "Movies Explorer" с API сервером 
 
-Backend https://api.filmfinder.nomoredomains.monster
+### Технологии:
++ NodeJS
++ Express
++ MongoDB
++ Mongoose
+
+### Функционал: 
+
++ Регистрация
++ Авторизация
++ Обновление данных пользователя
++ Получение информации о текущем пользователе
++ Получение списка фильмов
++ Создание фильма
++ Удаление фильма
++ Центральная обработка ошибок
++ Валидация входящих данных
+  
+## Установка и запуск проекта:
+Клонировать репозиторий: `git clone https://github.com/rostislove69/movies-explorer-api.git`
+
+Установить зависимости: `npm install`
+
+Запустить сервер: `npm run start`
+
+Запустить сервер с hot-reload: `npm run dev`
